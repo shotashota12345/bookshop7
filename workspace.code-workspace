@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "06-bookshop",
+			"path": "."
+		},
+		{
+			"name": "bookshop1",
+			"path": "../../Documents/GitHub/bookshop1"
+		}
+	],
+	"settings": {}
+}
