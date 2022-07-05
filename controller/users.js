@@ -44,7 +44,6 @@ const login = async(req,res) => {
         const {mail, password} = req.body
         const user = await users.findOne({where: {mail: mail}})
         bcrypt.compare(password, user.password, function(err, passwordCheck){
-            console.log(passwordCheck)
             if(passwordCheck){
                 res.status(200).json(`you succesfull entered, hello ${user.firstName}, ${user.lastName}`)
             }
@@ -70,6 +69,7 @@ const password_recovery = async(req,res,next) => {
 
     
 }
+// change password link which sent from password recovery
 const change_password_link = async(req,res) => {
     try {
         const {password} = req.body
@@ -78,13 +78,26 @@ const change_password_link = async(req,res) => {
         const hashed_password = await bcrypt.hash(password, 10)
         await user.update(user.password = hashed_password)
         await user.save()
-        console.log(user)
         res.status(200).json(`your password was changed ${user.firstName}`)
         
     } catch (error) {
         res.status(404).json('something went wrong', err)
     }
-
 }
 
-module.exports = {show_all_users,login, registration_users, password_recovery, change_password_link}
+// Profile page 
+const profile_page = async(req,res) => {
+    try {
+        const {id} = req.params
+        const user = await users.findOne({where:{id: id}})
+        if(!user){
+            res.status(404).json('User not found')
+        }else{
+            res.status(200).json(user)
+        }
+    } catch (error) {
+        res.status(404).json('something went wrong')
+    }
+}
+
+module.exports = {show_all_users,login, registration_users, password_recovery, change_password_link, profile_page}
