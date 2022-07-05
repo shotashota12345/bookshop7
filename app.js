@@ -16,11 +16,8 @@ const books_gallery_main = require('./models/books_gallery_main.js')
 
 
 app.use(express.json())
-app.get('/users',(req,res)=>{
-    res.send('select')
-})
 
-app.use('/admin/users/', routes)
+app.use('/', routes)
 
 const start = async () => {
     try {
