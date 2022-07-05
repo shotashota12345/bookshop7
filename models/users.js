@@ -1,5 +1,6 @@
-const {Sequelize, DataTypes} = require('sequelize')
+const {DataTypes} = require('sequelize')
 const connectDb = require('../db/connect')
+const jwt = require('jsonwebtoken')
 
 const users = connectDb.define('users',{
     id:{
