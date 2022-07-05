@@ -32,7 +32,7 @@ const users = connectDb.define('users',{
     },
     personalNumber:{
         unique: true,
-        type: DataTypes.STRING(11),   
+        type: DataTypes.STRING,   
     },
     adress: {
         type: DataTypes.STRING,
